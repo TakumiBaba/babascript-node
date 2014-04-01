@@ -12,8 +12,8 @@ _ = require "underscore"
 class Person extends EventEmitter
   cid: ""
 
-  constructor: (@id)->
-    LindaBase ?= new Linda "http://linda.masuilab.org"
+  constructor: (@id, @base)->
+    LindaBase ?= new Linda @base || "http://linda.masuilab.org"
     @ts = new TupleSpace @id, LindaBase
     @tasks = []
     @resultList = {}
@@ -72,6 +72,12 @@ class Person extends EventEmitter
       @ts.take ["babascript", "return", cid], @returnTake
     @emit "#{cid}_recall"
 
+  _humanExec: (key, args)->
+    if typeof arg[args.length - 1] isnt 'function'
+      done = false
+      while(!done)
+        # ここで、何かしらの方法で @on "#{cid}" が実行されるまで
+        # 待機する
 
   returnTake: (tuple, info)=>
     cid = tuple[2]

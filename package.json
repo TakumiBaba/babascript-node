@@ -2,7 +2,7 @@
   "name": "babascript",
   "version": "0.1.4",
   "description": "BabaScript for node",
-  "main": "./lib/babascript.js",
+  "main": "./lib/main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/TakumiBaba/node-babascript"
@@ -26,7 +26,11 @@
     "methodmissing": "*",
     "node-linda-client": "*",
     "moment": "~2.3.0",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "parse": "*",
+    "linda-socket.io": "~0.1.5",
+    "socket.io-client": "~0.9.16",
+    "request": "~2.33.0"
   },
   "author": "Takumi Baba",
   "license": "MIT"
