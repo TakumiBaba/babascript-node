@@ -8,8 +8,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-simple-mocha'
   grunt.loadNpmTasks 'grunt-notify'
 
-  grunt.registerTask 'test',    [ 'coffeelint', 'coffee', 'simplemocha' ]
+  grunt.registerTask 'test',    [ 'coffeelint', 'coffee']
   grunt.registerTask 'default', [ 'coffeelint', 'coffee', 'simplemocha', 'watch' ]
+  grunt.registerTask "debug", ["coffeelint", "coffee", "watch"]
 
   grunt.initConfig
 
@@ -48,12 +49,13 @@ module.exports = (grunt) ->
         reporter: 'spec'
         compilers: 'coffee:coffee-script'
         ignoreLeaks: no
+        timeout: 10000
       dist:
-        src: [ 'tests/test.coffee' ]
+        src: [ 'tests/test.coffee', "tests/testclient.coffee" ]
 
     watch:
       options:
         interrupt: yes
       dist:
-        files: [ 'src/**/*.coffee' ]
+        files: [ 'src/**/*.coffee', 'tests/*.coffee' ]
         tasks: [ 'test' ]
